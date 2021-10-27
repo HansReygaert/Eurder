@@ -11,6 +11,11 @@
             <medium></medium>
             <high></high>
         </stock-level>
+        <loginState>
+            <notLogginIn></notLogginIn>
+            <FailedLogin></FailedLogin>
+            <LoginSuccesful></LoginSuccesful>
+        </loginState>
     </enums>
 
     <customer>
