@@ -29,6 +29,7 @@ public class CustomerService {
 	}
 
 	public IdentificationDto register(CustomerRegistrationDto registrationField){
+		System.out.println(registrationField.toString());
 		if (! isRegistrationFieldComplete(registrationField))
 			throw new CustomerRegistrationFieldNotCompleteException();
 		if(! isUniqueEmail(registrationField.email()))
@@ -42,11 +43,11 @@ public class CustomerService {
 	}
 
 	private boolean isRegistrationFieldComplete(CustomerRegistrationDto customerRegistrationForm){
-		return customerRegistrationForm.firstName() != null
+		return  customerRegistrationForm.firstName() != null
 				  && customerRegistrationForm.lastName() != null
 				  && customerRegistrationForm.email() != null
 				  && customerRegistrationForm.address() != null
-				  && customerRegistrationForm.phoneNumber() != null;
+				  && customerRegistrationForm.phoneNumber() != null ;
 	}
 
 	private boolean isUniqueEmail(String emailField) {
@@ -56,7 +57,10 @@ public class CustomerService {
 
 	public CustomerDto getCustomerInformation(String identificationToken,
 	                                          String uuid){
+		System.out.println("Got to 1");
+		System.out.println(identificationToken);
 		if (!securityService.isAdmin(identificationToken)) return null;
+		System.out.println("got to 2");
 		return CustomerMapper.getCustomerDto(customerRepository.getCustomerById(uuid));
 	}
 
