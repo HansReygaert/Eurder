@@ -6,7 +6,6 @@ import com.hansreygaert.switchfully.euder.service.RegisterService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequestMapping(path = "/register")
@@ -27,7 +26,8 @@ public class RegisterController {
 	@GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public IdentificationDto register(@RequestHeader(required = false) String token){
 		if(token != null){
-			//TODO: Make it so the user is created now and redirect to /
+			//TODO: Make it so the user is created now and redirect to '/' with
+			// the header included
 			return new IdentificationDto(token);
 		}
 		return null;
