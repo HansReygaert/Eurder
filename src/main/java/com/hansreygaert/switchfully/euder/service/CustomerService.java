@@ -1,5 +1,6 @@
 package com.hansreygaert.switchfully.euder.service;
 
+import com.hansreygaert.switchfully.euder.domain.entity.Customer;
 import com.hansreygaert.switchfully.euder.domain.repository.CustomerRepository;
 import com.hansreygaert.switchfully.euder.dtos.CustomerDto;
 import com.hansreygaert.switchfully.euder.dtos.CustomerDtoBasicInformation;
@@ -13,30 +14,34 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
 	private final CustomerRepository customerRepository;
 	private final SecurityService securityService;
+	private final CustomerMapper customerMapper;
 	private final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
 	@Autowired
 	public CustomerService(CustomerRepository customerRepository,
+								  CustomerMapper customerMapper,
 	                       SecurityService securityService) {
 		this.customerRepository = customerRepository;
+		this.customerMapper = customerMapper;
 		this.securityService = securityService;
 	}
 
 	public IdentificationDto register(CustomerRegistrationDto registrationField){
-		System.out.println(registrationField.toString());
 		if (! isRegistrationFieldComplete(registrationField))
 			throw new CustomerRegistrationFieldNotCompleteException();
 		if(! isUniqueEmail(registrationField.email()))
 			throw new CustomerEmailAlreadyExistsException();
 
 		customerRepository.addCustomer(
-				  CustomerMapper.getCustomerFromDto(registrationField)
+				  customerMapper.getCustomerFromDto(registrationField)
 		);
 		logger.info("New customer added");
 		return securityService.getIdentificationToken(registrationField.email());
@@ -57,18 +62,14 @@ public class CustomerService {
 
 	public CustomerDto getCustomerInformation(String identificationToken,
 	                                          String uuid){
-		System.out.println("Got to 1");
-		System.out.println(identificationToken);
-		if (securityService.isAdmin(identificationToken)) return null;
-		System.out.println("got to 2");
-		return CustomerMapper.getCustomerDto(customerRepository.getCustomerById(uuid));
+		if (! securityService.isAdmin(identificationToken)) return null;
+		return customerMapper.getCustomerDto(customerRepository.getCustomerById(uuid));
 	}
 
 	public List<CustomerDtoBasicInformation> getAllCustomers(String identificationToken){
-		if (securityService.isAdmin(identificationToken)) return null;
-		return customerRepository.getCustomers()
-				  .stream()
-				  .map(CustomerMapper :: getCustomerDtoBasicInfo)
-				  .toList();
+		if (! securityService.isAdmin(identificationToken)) return null;
+		return customerRepository.getCustomers().stream()
+								 .map(customerMapper::getCustomerDtoBasicInfo)
+								 .toList();
 	}
 }

@@ -8,7 +8,9 @@ import com.hansreygaert.switchfully.euder.dtos.IdentificationDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,13 +30,12 @@ public class SecurityService {
 	}
 
 	private Administrator getAdministrator(String uuid){
+		if(! isAdmin(uuid)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 		return adminRepository.getAdministratorById(uuid);
 	}
 
-
 	public boolean isAdmin(String uuid){
-		if (getAdministrator(uuid) == null) return true;
-		return adminRepository.getAdministratorById(uuid) == null;
+		return adminRepository.getAdministrators().containsKey(uuid);
 	}
 
 	public IdentificationDto getIdentificationToken(String email){

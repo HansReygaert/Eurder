@@ -20,9 +20,15 @@ public class AdminRepository {
 		administrators.put(testAdmin.getUuid(), testAdmin);
 	}
 
+
+
 	public Administrator getAdministratorById(String uuid){
 		Administrator admin = administrators.get(uuid);
 		System.out.println(admin);
 		return administrators.get(uuid);
+	}
+
+	public Map<String, Administrator> getAdministrators() {
+		return administrators;
 	}
 }

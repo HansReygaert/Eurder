@@ -2,7 +2,7 @@ package com.hansreygaert.switchfully.euder.dtos;
 
 import java.util.Objects;
 
-public final class CustomerDtoBasicInformation {
+public class CustomerDtoBasicInformation {
 	private final String uuid;
 	private final String email;
 	private final String firstName;
@@ -17,13 +17,13 @@ public final class CustomerDtoBasicInformation {
 		this.lastName = lastName;
 	}
 
-	public String uuid() {return uuid;}
+	public String getUuid() {return uuid;}
 
-	public String email() {return email;}
+	public String getEmail() {return email;}
 
-	public String firstName() {return firstName;}
+	public String getFirstName() {return firstName;}
 
-	public String lastName() {return lastName;}
+	public String getLastName() {return lastName;}
 
 	@Override
 	public boolean equals(Object obj) {

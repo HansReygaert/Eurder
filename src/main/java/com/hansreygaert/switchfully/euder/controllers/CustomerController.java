@@ -41,5 +41,4 @@ public class CustomerController {
 
 		return customerService.getCustomerInformation(idToken,customerId);
 	}
-
 }

@@ -17,7 +17,6 @@ public class CustomerRepository {
 	private final Map<String, Customer> customers;
 	private final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
-	@Autowired
 	public CustomerRepository() {
 		customers = new HashMap<>();
 		addDummydata();
@@ -49,6 +48,6 @@ public class CustomerRepository {
 		);
 		customers.put(Jose.getUuid(),Jose);
 		customers.put(Alexis.getUuid(),Alexis);
-		logger.info("Jose uuid:" + Jose.getUuid());
+		System.out.println("Jose uuid:" + Jose.getUuid());
 	}
 }

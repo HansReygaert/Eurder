@@ -4,9 +4,11 @@ import com.hansreygaert.switchfully.euder.domain.entity.Customer;
 import com.hansreygaert.switchfully.euder.dtos.CustomerDto;
 import com.hansreygaert.switchfully.euder.dtos.CustomerDtoBasicInformation;
 import com.hansreygaert.switchfully.euder.dtos.CustomerRegistrationDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomerMapper {
-	public static Customer getCustomerFromDto(CustomerRegistrationDto customerRegistrationDto){
+	public Customer getCustomerFromDto(CustomerRegistrationDto customerRegistrationDto){
 		return new Customer(
 				  customerRegistrationDto.firstName(),
 				  customerRegistrationDto.lastName(), customerRegistrationDto.email(),
@@ -14,7 +16,7 @@ public class CustomerMapper {
 		);
 	}
 
-	public static CustomerDto getCustomerDto(Customer customer){
+	public CustomerDto getCustomerDto(Customer customer){
 		return new CustomerDto(
 				  customer.getFirstName(), customer.getLastName(),
 				  customer.getEmail(), customer.getAddress(),
@@ -22,7 +24,7 @@ public class CustomerMapper {
 		);
 	}
 
-		public static CustomerDtoBasicInformation getCustomerDtoBasicInfo(Customer customer){
+		public CustomerDtoBasicInformation getCustomerDtoBasicInfo(Customer customer){
 			return new CustomerDtoBasicInformation(
 					  customer.getUuid(), customer.getUuid(),
 					  customer.getFirstName(), customer.getLastName()
