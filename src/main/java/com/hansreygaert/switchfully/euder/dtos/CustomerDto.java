@@ -1,10 +1,9 @@
 package com.hansreygaert.switchfully.euder.dtos;
 
-public record RegistrationDto(
+public record CustomerDto(
 		  String firstName,
 		  String lastName,
 		  String email,
-		  String address,
+		  String fullAddress,
 		  String phoneNumber
-) {
-}
+) {}
