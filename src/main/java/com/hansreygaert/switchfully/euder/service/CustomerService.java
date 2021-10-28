@@ -59,13 +59,13 @@ public class CustomerService {
 	                                          String uuid){
 		System.out.println("Got to 1");
 		System.out.println(identificationToken);
-		if (!securityService.isAdmin(identificationToken)) return null;
+		if (securityService.isAdmin(identificationToken)) return null;
 		System.out.println("got to 2");
 		return CustomerMapper.getCustomerDto(customerRepository.getCustomerById(uuid));
 	}
 
 	public List<CustomerDtoBasicInformation> getAllCustomers(String identificationToken){
-		if (!securityService.isAdmin(identificationToken)) return null;
+		if (securityService.isAdmin(identificationToken)) return null;
 		return customerRepository.getCustomers()
 				  .stream()
 				  .map(CustomerMapper :: getCustomerDtoBasicInfo)

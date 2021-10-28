@@ -10,4 +10,11 @@ public class Administrator {
 	public String getUuid() {
 		return uuid;
 	}
+
+	@Override
+	public String toString() {
+		return "Administrator{" +
+				  "uuid='" + uuid + '\'' +
+				  '}';
+	}
 }

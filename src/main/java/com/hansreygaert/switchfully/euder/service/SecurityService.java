@@ -1,5 +1,6 @@
 package com.hansreygaert.switchfully.euder.service;
 
+import com.hansreygaert.switchfully.euder.domain.entity.Administrator;
 import com.hansreygaert.switchfully.euder.domain.entity.Customer;
 import com.hansreygaert.switchfully.euder.domain.repository.AdminRepository;
 import com.hansreygaert.switchfully.euder.domain.repository.CustomerRepository;
@@ -26,9 +27,14 @@ public class SecurityService {
 		this.customerRepository = customerRepository;
 	}
 
+	private Administrator getAdministrator(String uuid){
+		return adminRepository.getAdministratorById(uuid);
+	}
+
+
 	public boolean isAdmin(String uuid){
-		return adminRepository.getAdministrators().stream()
-				  .anyMatch(admin -> admin.getUuid().equals(uuid));
+		if (getAdministrator(uuid) == null) return true;
+		return adminRepository.getAdministratorById(uuid) == null;
 	}
 
 	public IdentificationDto getIdentificationToken(String email){
