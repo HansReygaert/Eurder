@@ -6,6 +6,7 @@ import com.hansreygaert.switchfully.euder.domain.repository.CustomerRepository;
 import com.hansreygaert.switchfully.euder.dtos.IdentificationDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class SecurityService {
 
 	private static final int MAX_AMOUNT_OF_EMAIL = 1;
 
+	@Autowired
 	public SecurityService(AdminRepository adminRepository,
 	                       CustomerRepository customerRepository) {
 		this.adminRepository = adminRepository;
@@ -35,8 +37,8 @@ public class SecurityService {
 				  .toList();
 
 		if (customer.size() == 0) return null;
-		if (customer.size() > MAX_AMOUNT_OF_EMAIL) logger.error("User with multiple emails, " +
-				  "we have data corruption");
+		if (customer.size() > MAX_AMOUNT_OF_EMAIL) logger.error(
+				  "User with multiple emails, we have data corruption");
 
 		return getSecureToken(customer.get(0).getUuid());
 	}
