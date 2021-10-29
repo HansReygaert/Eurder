@@ -36,6 +36,7 @@ public class CustomerService {
 
 	//POST
 	public IdentificationDto register(CustomerRegistrationDto registrationField){
+		//CAN STILL BE OF WRONG TYPE 
 		if (! isRegistrationFieldComplete(registrationField))
 			throw new CustomerRegistrationFieldNotCompleteException();
 		if(! isUniqueEmail(registrationField.email()))

@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -39,8 +38,8 @@ public class CustomerRepository {
 							 "Vlaams-Brabant, Belgium",
 				  "+32478735644"
 		);
-		Customer Alexis = new Customer(
-				  "Alexis", "Larson", "alexii99@outlook.com",
+		Customer Alexis = new Customer( "4cdb4bb8-527c-4fcf-8133-85af2850000e",
+				   "Alexis", "Larson", "alexii99@outlook.com",
 				  "Seppeplein 814, 2A, 9514, Leupegem, Limburg, Belgium",
 				  "+32488531244"
 		);

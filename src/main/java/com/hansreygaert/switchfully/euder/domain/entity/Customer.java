@@ -22,6 +22,17 @@ public class Customer{
 		this.phoneNumber = phoneNumber;
 	}
 
+	//FOR TESTING ONLY !
+	public Customer(String uuid, String firstName, String lastName,
+	                String email, String address, String phoneNumber) {
+		this.uuid = uuid;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+	}
+
 	public String getUuid() {
 		return uuid;
 	}
