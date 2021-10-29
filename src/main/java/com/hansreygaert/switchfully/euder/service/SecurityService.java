@@ -39,7 +39,8 @@ public class SecurityService {
 	}
 
 	public IdentificationDto getIdentificationToken(String email){
-		List<Customer> customer =  customerRepository.getCustomers().stream()
+		List<Customer> customer =
+				  customerRepository.getCustomers().values().stream()
 				  .filter(getCustomer -> getCustomer.getEmail().equals(email))
 				  .toList();
 

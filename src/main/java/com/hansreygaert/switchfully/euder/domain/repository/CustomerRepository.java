@@ -2,10 +2,8 @@ package com.hansreygaert.switchfully.euder.domain.repository;
 
 import com.hansreygaert.switchfully.euder.domain.entity.Customer;
 import com.hansreygaert.switchfully.euder.service.CustomerService;
-import com.hansreygaert.switchfully.euder.service.SecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -22,8 +20,8 @@ public class CustomerRepository {
 		addDummydata();
 	}
 
-	public List<Customer> getCustomers(){
-		return customers.values().stream().toList();
+	public Map<String, Customer> getCustomers() {
+		return customers;
 	}
 
 	public Customer getCustomerById(String uuid){
@@ -48,6 +46,5 @@ public class CustomerRepository {
 		);
 		customers.put(Jose.getUuid(),Jose);
 		customers.put(Alexis.getUuid(),Alexis);
-		System.out.println("Jose uuid:" + Jose.getUuid());
 	}
 }

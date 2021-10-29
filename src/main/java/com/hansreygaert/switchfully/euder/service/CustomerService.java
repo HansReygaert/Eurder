@@ -34,6 +34,7 @@ public class CustomerService {
 		this.securityService = securityService;
 	}
 
+	//POST
 	public IdentificationDto register(CustomerRegistrationDto registrationField){
 		if (! isRegistrationFieldComplete(registrationField))
 			throw new CustomerRegistrationFieldNotCompleteException();
@@ -56,19 +57,21 @@ public class CustomerService {
 	}
 
 	private boolean isUniqueEmail(String emailField) {
-		return customerRepository.getCustomers().stream()
+		return customerRepository.getCustomers().values().stream()
 				  .noneMatch(email -> email.getEmail().equals(emailField));
 	}
-
+	//GET One
 	public CustomerDto getCustomerInformation(String identificationToken,
 	                                          String uuid){
 		if (! securityService.isAdmin(identificationToken)) return null;
+		if (! customerRepository.getCustomers().containsKey(uuid)) return null;
 		return customerMapper.getCustomerDto(customerRepository.getCustomerById(uuid));
-	}
 
+	}
+	// GET ALL
 	public List<CustomerDtoBasicInformation> getAllCustomers(String identificationToken){
 		if (! securityService.isAdmin(identificationToken)) return null;
-		return customerRepository.getCustomers().stream()
+		return customerRepository.getCustomers().values().stream()
 								 .map(customerMapper::getCustomerDtoBasicInfo)
 								 .toList();
 	}

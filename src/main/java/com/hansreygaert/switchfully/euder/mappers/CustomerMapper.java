@@ -26,7 +26,7 @@ public class CustomerMapper {
 
 		public CustomerDtoBasicInformation getCustomerDtoBasicInfo(Customer customer){
 			return new CustomerDtoBasicInformation(
-					  customer.getUuid(), customer.getUuid(),
+					  customer.getUuid(), customer.getEmail(),
 					  customer.getFirstName(), customer.getLastName()
 			);
 		}

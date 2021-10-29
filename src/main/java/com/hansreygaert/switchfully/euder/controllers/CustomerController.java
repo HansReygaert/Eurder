@@ -22,7 +22,7 @@ public class CustomerController {
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public IdentificationDto getAllCustomers(CustomerRegistrationDto customerRegistrationDto){
+	public IdentificationDto createCustomer(@RequestBody CustomerRegistrationDto customerRegistrationDto){
 		return customerService.register(customerRegistrationDto);
 	}
 	//READ ALL
