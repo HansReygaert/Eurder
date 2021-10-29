@@ -29,12 +29,15 @@ public class SecurityService {
 		this.customerRepository = customerRepository;
 	}
 
-	private Administrator getAdministrator(String uuid){
+	private Administrator getAdministrator(String secureToken){
+		String uuid = getUserIdFromToken(secureToken);
 		if(! isAdmin(uuid)) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+
 		return adminRepository.getAdministratorById(uuid);
 	}
 
-	public boolean isAdmin(String uuid){
+	public boolean isAdmin(String secureToken){
+		String uuid = getUserIdFromToken(secureToken);
 		return adminRepository.getAdministrators().containsKey(uuid);
 	}
 
@@ -44,13 +47,17 @@ public class SecurityService {
 				  .filter(getCustomer -> getCustomer.getEmail().equals(email))
 				  .toList();
 
-		if (customer.size() == 0) return null;
+		if (customer.size() == 0) return null; logger.warn("User does not exist");
 		if (customer.size() > MAX_AMOUNT_OF_EMAIL) logger.error(
 				  "User with multiple emails, we have data corruption");
 
 		return getSecureToken(customer.get(0).getUuid());
 	}
 
+	private String getUserIdFromToken(String secureToken) {
+		//TODO: Implement removal of Salt and pepper
+		return secureToken;
+	}
 	private IdentificationDto getSecureToken(String token){
 		//TODO: Add Salt and Pepper
 		return new IdentificationDto(token);
