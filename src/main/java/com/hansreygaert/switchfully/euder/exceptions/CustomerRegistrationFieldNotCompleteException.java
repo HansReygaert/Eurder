@@ -8,15 +8,17 @@ import org.springframework.web.server.ResponseStatusException;
 
 @ResponseStatus(reason = "Some fields were left blank")
 public class CustomerRegistrationFieldNotCompleteException extends ResponseStatusException {
-	private final Logger logger = LoggerFactory.getLogger(CustomerRegistrationFieldNotCompleteException.class);
-	public static final String DEFAULT_REPLY =
-			  "Registration failed, some fields left empty";
-	public CustomerRegistrationFieldNotCompleteException(String message) {
-		super(HttpStatus.BAD_REQUEST, DEFAULT_REPLY);
-		logger.warn(message);
-	}
 
-	public CustomerRegistrationFieldNotCompleteException() {
-		this(DEFAULT_REPLY);
-	}
+  public static final String DEFAULT_REPLY = "Registration failed, some fields left empty";
+  private final Logger logger = LoggerFactory.getLogger(
+      CustomerRegistrationFieldNotCompleteException.class);
+
+  public CustomerRegistrationFieldNotCompleteException(String message) {
+    super(HttpStatus.BAD_REQUEST, DEFAULT_REPLY);
+    logger.warn(message);
+  }
+
+  public CustomerRegistrationFieldNotCompleteException() {
+    this(DEFAULT_REPLY);
+  }
 }

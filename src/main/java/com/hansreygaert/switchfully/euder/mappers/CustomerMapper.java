@@ -8,26 +8,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerMapper {
-	public Customer getCustomerFromDto(CustomerRegistrationDto customerRegistrationDto){
-		return new Customer(
-				  customerRegistrationDto.firstName(),
-				  customerRegistrationDto.lastName(), customerRegistrationDto.email(),
-				  customerRegistrationDto.address(), customerRegistrationDto.phoneNumber()
-		);
-	}
 
-	public CustomerDto getCustomerDto(Customer customer){
-		return new CustomerDto(
-				  customer.getFirstName(), customer.getLastName(),
-				  customer.getEmail(), customer.getAddress(),
-				  customer.getPhoneNumber()
-		);
-	}
+  public Customer getCustomerFromDto(CustomerRegistrationDto customerRegistrationDto) {
+    return new Customer(
+        customerRegistrationDto.firstName(),
+        customerRegistrationDto.lastName(), customerRegistrationDto.email(),
+        customerRegistrationDto.address(), customerRegistrationDto.phoneNumber()
+    );
+  }
 
-		public CustomerDtoBasicInformation getCustomerDtoBasicInfo(Customer customer){
-			return new CustomerDtoBasicInformation(
-					  customer.getUuid(), customer.getEmail(),
-					  customer.getFirstName(), customer.getLastName()
-			);
-		}
+  public CustomerDto getCustomerDto(Customer customer) {
+    return new CustomerDto(
+        customer.getFirstName(), customer.getLastName(),
+        customer.getEmail(), customer.getAddress(),
+        customer.getPhoneNumber()
+    );
+  }
+
+  public CustomerDtoBasicInformation getCustomerDtoBasicInfo(Customer customer) {
+    return new CustomerDtoBasicInformation(
+        customer.getUuid(), customer.getEmail(),
+        customer.getFirstName(), customer.getLastName()
+    );
+  }
 }

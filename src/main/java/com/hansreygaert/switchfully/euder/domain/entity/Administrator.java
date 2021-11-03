@@ -1,20 +1,21 @@
 package com.hansreygaert.switchfully.euder.domain.entity;
 
 public class Administrator {
-	private final String uuid;
 
-	public Administrator(String uuid) {
-		this.uuid = uuid;
-	}
+  private final String uuid;
 
-	public String getUuid() {
-		return uuid;
-	}
+  public Administrator(String uuid) {
+    this.uuid = uuid;
+  }
 
-	@Override
-	public String toString() {
-		return "Administrator{" +
-				  "uuid='" + uuid + '\'' +
-				  '}';
-	}
+  public String getUuid() {
+    return uuid;
+  }
+
+  @Override
+  public String toString() {
+    return "Administrator{" +
+        "uuid='" + uuid + '\'' +
+        '}';
+  }
 }

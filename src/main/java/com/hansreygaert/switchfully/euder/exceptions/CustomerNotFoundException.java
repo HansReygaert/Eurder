@@ -8,15 +8,16 @@ import org.springframework.web.server.ResponseStatusException;
 
 @ResponseStatus(reason = "User not found")
 public class CustomerNotFoundException extends ResponseStatusException {
-	private final Logger logger = LoggerFactory.getLogger(CustomerNotFoundException.class);
-	public static final String DEFAULT_REPLY = "User not found";
 
-	public CustomerNotFoundException(String message) {
-		super(HttpStatus.BAD_REQUEST, message);
-		logger.warn(message);
-	}
+  public static final String DEFAULT_REPLY = "User not found";
+  private final Logger logger = LoggerFactory.getLogger(CustomerNotFoundException.class);
 
-	public CustomerNotFoundException() {
-		this(DEFAULT_REPLY);
-	}
+  public CustomerNotFoundException(String message) {
+    super(HttpStatus.BAD_REQUEST, message);
+    logger.warn(message);
+  }
+
+  public CustomerNotFoundException() {
+    this(DEFAULT_REPLY);
+  }
 }

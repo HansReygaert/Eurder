@@ -1,34 +1,34 @@
 package com.hansreygaert.switchfully.euder.domain.entity;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class ItemGroup {
-	private final String id;
-	private int amount;
-	private LocalDate LocalDate;
 
-	public ItemGroup() {
-		id = UUID.randomUUID().toString();
-	}
+  private final String itemId;
+  private int amount;
+  private LocalDate LocalDate;
 
-	public String getId() {
-		return id;
-	}
+  public ItemGroup(String itemId) {
+    this.itemId = itemId;
+  }
 
-	public int getAmount() {
-		return amount;
-	}
+  public String getItemId() {
+    return itemId;
+  }
 
-	public java.time.LocalDate getLocalDate() {
-		return LocalDate;
-	}
+  public int getAmount() {
+    return amount;
+  }
 
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
+  public void setAmount(int amount) {
+    this.amount = amount;
+  }
 
-	public void setLocalDate(java.time.LocalDate localDate) {
-		LocalDate = localDate;
-	}
+  public java.time.LocalDate getLocalDate() {
+    return LocalDate;
+  }
+
+  public void setLocalDate(LocalDate localDate) {
+    LocalDate = localDate;
+  }
 }
